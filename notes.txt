@@ -1,0 +1,108 @@
+DB:
+    User:
+        ID (primary key)
+        Username
+        Password (hash, sha256?)
+        Nickname (most recently used?)
+        Email (private!)
+        Level (int? str?)
+        
+    UserKeys:
+        UserID (PK from Users)
+        Key (random hash)
+        Expires (timestamp)
+        
+    Server:
+        ID (primary key)
+        Name
+        Address
+        Port
+        Expires (timestamp)
+
+
+HTTPS API:
+    /user/register
+        POST:
+            username
+            password
+            email
+            capchta?
+        Reply:
+            success or error
+        
+    /user/login
+        POST:
+            username
+            password
+        Reply:
+            success or error
+            key
+            key cookie (random hash)
+            
+    /user
+        GET:
+            key or key cookie
+        Reply:
+            user's info (too lazy to write it all out)
+        
+    /server/register
+        POST:
+            servername
+            (maybe do some checking here to prevent spam servers?)
+        Reply:
+            key (random hash)
+
+    /server/heartbeat
+        POST:
+            key
+        Reply:
+            true
+            
+    /serverlist
+        GET
+        Reply:
+            list of servers
+            
+Python:
+    ORM DB mappings
+    Bottle url routes
+    Glue code
+    
+Web interface:
+    Jquery, jquery, jquery, and more jquery!
+    Or possibly Jquery Mobile
+    
+    script checks for key cookie onload, and attempts to authenticate via the cookie, redirects to login page if unsuccessful
+    
+    Login:
+        Username
+        Password
+        Register link
+    
+    Menu (in sidebar?):
+        Players
+        Servers
+        Chat?
+        Account
+        Admin (admins only ofc)
+        
+    Players:
+        List of players
+        Each player's page has their info and link to chat/message player
+        Admin:
+            Set player level
+            Ban player (or delete account?)
+        
+    Servers:
+        List of servers
+        Server info (currently map, gamemode, players, etc)
+        Chat room link
+        
+    Chat:
+        List of chat rooms
+        XMPP links?
+        
+    Account:
+        Change password
+        Change nickname
+        Change email?
